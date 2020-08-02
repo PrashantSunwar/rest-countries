@@ -12,7 +12,6 @@ export default function useSearch(setCountries) {
     (data, limit = 8) => {
       const newResp = data.slice(0, limit);
       setCountries(newResp);
-      console.log(newResp);
     },
     [setCountries]
   );

@@ -31,4 +31,14 @@ body {
 .custom-select .custom-select__icon  {
   background-color: ${({ theme }) => theme.componentColors};
 }
+.flag {
+  background-color: ${({ theme }) => theme.componentColors};
+  color: ${({ theme }) => theme.text};
+}
+.back-route {
+  background-color: ${({ theme }) => theme.componentColors};
+}
+.details {
+  color: ${({ theme }) => theme.text};
+}
 `;

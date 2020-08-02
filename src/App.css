@@ -37,17 +37,20 @@
 .mode-button span {
   margin-right: 0.5em;
 }
-
 .search {
-  margin: 4em 0;
-}
-.search form {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2em 0;
 }
+
+.search form {
+  margin-bottom: 2em;
+  width: 100%;
+}
+
 .search__cont {
-  width: 400px;
+  /* width: 400px; */
   background-color: var(--dark-blue-100);
   border-radius: 5px;
 }
@@ -95,4 +98,109 @@
   justify-content: center;
   background-color: var(--dark-blue-100);
   pointer-events: none;
+}
+
+.flags {
+  margin-bottom: 4em;
+}
+
+.flags-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+  justify-content: space-evenly;
+  grid-gap: 4rem 2rem;
+}
+
+.flag {
+  background-color: var(--dark-blue-100);
+  color: var(--white);
+  overflow: hidden;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flag__name {
+  margin-bottom: 0.875em;
+}
+
+.flag__info {
+  margin: 1.5em 1.8em 3em 1.8em;
+}
+
+.flag__subtext {
+  font-weight: 600;
+  margin: 0.5em 0;
+}
+
+.flag__subtext-info {
+  font-weight: 300;
+}
+
+.details {
+  min-height: 100vh;
+  margin-bottom: 4rem;
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.details h1 {
+  font-size: 1.75em;
+  margin-bottom: 1rem;
+}
+
+.back-route {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  background-color: var(--dark-blue-100);
+  padding: 1em 2.5em;
+  margin: 4em 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.back-route svg {
+  margin-right: 1.5em;
+}
+
+.country-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.country-info {
+  columns: 1;
+}
+
+.country-cont {
+  align-self: center;
+}
+
+@media (min-width: 650px) {
+  body {
+    font-size: 0.875rem;
+  }
+
+  .country-grid {
+    grid-template-columns: minmax(250px, 1fr) 1fr;
+    gap: 5rem;
+  }
+
+  .search {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .search form {
+    width: 400px;
+  }
+}
+
+@media (min-width: 800px) {
+  .country-info {
+    columns: 2;
+  }
 }
