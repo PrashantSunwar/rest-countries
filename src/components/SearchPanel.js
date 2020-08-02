@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SelectComponent from "./SelectComponent";
-
-let url = "https://restcountries.eu/rest/v2";
-const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+import useSearch from "../utils/useSearch";
 
 function SearchPanel({ setCountries }) {
   const [inputValue, setInputValue] = useState("");
-  const [option, setOption] = useState("");
-  const [searchInput, setSearchInput] = useState("");
+  const { option, setOption, setSearchInput } = useSearch(setCountries);
   const inputRef = useRef();
 
   const handleSubmit = (e) => {
@@ -20,43 +17,7 @@ function SearchPanel({ setCountries }) {
       setSearchInput(inputValue);
     }
   };
-
-  const limitResponse = useCallback(
-    (data, limit = 8) => {
-      const newResp = data.slice(0, limit);
-      setCountries(newResp);
-      console.log(newResp);
-    },
-    [setCountries]
-  );
-
   useEffect(() => inputRef.current.focus(), []);
-
-  useEffect(() => {
-    if (searchInput) {
-      let searchUrl;
-      if (regions.includes(searchInput)) searchUrl = url + `/region/${searchInput}`;
-      else searchUrl = url + `/name/${searchInput}`;
-      fetch(searchUrl)
-        .then((resp) => resp.json())
-        .then((data) => {
-          limitResponse(data);
-        })
-        .catch(console.error);
-    }
-  }, [searchInput, limitResponse]);
-
-  useEffect(() => {
-    if (option) {
-      const resgionUrl = url + `/region/${option}`;
-      fetch(resgionUrl)
-        .then((resp) => resp.json())
-        .then((data) => {
-          limitResponse(data);
-        })
-        .catch(console.error);
-    }
-  }, [option, limitResponse]);
 
   return (
     <div className="search">
