@@ -4,12 +4,12 @@ import ResultPanel from "./ResultPanel";
 
 function MainComponent() {
   return (
-    <div className="container">
-      <main className="main">
+    <main className="main">
+      <div className="container">
         <SearchPanel />
         <ResultPanel />
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 

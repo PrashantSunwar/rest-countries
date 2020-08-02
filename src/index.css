@@ -24,3 +24,7 @@ h2,
 h3 {
   color: inherit;
 }
+
+*:focus {
+  outline: 2px solid;
+}

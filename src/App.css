@@ -1,9 +1,9 @@
 :root {
-  --dark-gray-100: hsl(0, 0%, 98%);
   --dark-gray-500: hsl(0, 0%, 52%);
   --dark-blue-100: hsl(209, 23%, 22%);
   --dark-blue-400: hsl(207, 26%, 17%);
   --dark-blue-800: hsl(200, 15%, 8%);
+  --dark-gray-100: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 13%);
 }
@@ -25,7 +25,6 @@
   align-items: center;
 }
 
-.mode-button,
 .search__button {
   background: none;
   color: inherit;
@@ -54,7 +53,7 @@
 }
 
 .search__input {
-  padding: 1em 0;
+  padding: 1em 0.5em;
   background-color: transparent;
   width: calc(100% - 4em);
   border: none;
@@ -72,10 +71,28 @@
 }
 
 .search__filter {
-  padding: 1em 1em;
+  padding: 1em 3em 1em 1em;
   background-color: var(--dark-blue-100);
   color: inherit;
   border: none;
   font-family: inherit;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-select {
+  position: relative;
+}
+
+.custom-select .custom-select__icon {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 30px;
+  border-radius: 0 5px 5px 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-blue-100);
+  pointer-events: none;
 }
