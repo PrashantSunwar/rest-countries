@@ -10,7 +10,7 @@ import { GlobalStyles } from "./styled-components/global";
 library.add(faMoon, faSearch, faAngleDown, faArrowLeft);
 
 function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
     // if the theme is not light, then set it to dark
     if (theme === "light") {
