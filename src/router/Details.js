@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
 function snakeCase(word) {
   return word.replace(/([A-Z])/g, " $1").replace(/^./, function (str) {
@@ -18,7 +19,12 @@ function Details({ location }) {
         Back
       </Link>
       <section className="country">
-        <div className="country-grid">
+        <motion.div
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          initial={{ y: 100, opacity: 0 }}
+          className="country-grid"
+        >
           <img src={location.state.info.flag} alt={location.name} />
           <div className="country-cont">
             <h1>{location.state.info.name} </h1>
@@ -33,7 +39,7 @@ function Details({ location }) {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );

@@ -1,12 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import Loader from "../components/Loader";
+const list = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
 
-function ResultPanel({ countries }) {
-  return (
+const item = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: -50 },
+};
+
+function ResultPanel({ countries, loader }) {
+  return loader ? (
+    <Loader />
+  ) : (
     <section className="flags">
-      <div className="flags-grid">
+      <motion.ul variants={list} initial="hidden" animate="visible" className="flags-grid">
         {countries.map((country) => (
-          <div className="flag" key={country.area}>
+          <motion.li variants={item} className="flag" key={country.area}>
             <div className="flag__image">
               <Link
                 to={{
@@ -42,9 +55,9 @@ function ResultPanel({ countries }) {
                 Capital: <span className="flag__subtext-info">{country.capital}</span>
               </p>
             </div>
-          </div>
+          </motion.li>
         ))}
-      </div>
+      </motion.ul>
     </section>
   );
 }

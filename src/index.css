@@ -33,3 +33,29 @@ h3 {
 img {
   max-width: 100%;
 }
+
+@media (min-width: 650px) {
+  body {
+    font-size: 0.875rem;
+  }
+
+  .country-grid {
+    grid-template-columns: minmax(250px, 1fr) 1fr;
+    gap: 5rem;
+  }
+
+  .search {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .search form {
+    width: 400px;
+  }
+}
+
+@media (min-width: 800px) {
+  .country-info {
+    columns: 2;
+  }
+}

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 let url = "https://restcountries.eu/rest/v2";
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
-export default function useSearch(setCountries) {
+export default function useSearch(setCountries, setLoader) {
   const [option, setOption] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
@@ -19,6 +19,8 @@ export default function useSearch(setCountries) {
   useEffect(() => {
     if (searchInput) {
       let searchUrl;
+      setCountries([]);
+      setLoader(true);
       if (regions.includes(searchInput)) searchUrl = url + `/region/${searchInput}`;
       else searchUrl = url + `/name/${searchInput}`;
       fetch(searchUrl)
@@ -26,21 +28,25 @@ export default function useSearch(setCountries) {
         .then((data) => {
           limitResponse(data);
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => setLoader(false));
     }
-  }, [searchInput, limitResponse]);
+  }, [searchInput, limitResponse, setCountries, setLoader]);
 
   useEffect(() => {
     if (option) {
+      setCountries([]);
+      setLoader(true);
       const resgionUrl = url + `/region/${option}`;
       fetch(resgionUrl)
         .then((resp) => resp.json())
         .then((data) => {
           limitResponse(data);
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => setLoader(false));
     }
-  }, [option, limitResponse]);
+  }, [option, limitResponse, setCountries, setLoader]);
 
   return { option, setOption, searchInput, setSearchInput };
 }

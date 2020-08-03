@@ -6,6 +6,7 @@ import Details from "../router/Details";
 
 function MainComponent() {
   const [countries, setCountries] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   return (
     <main className="main">
@@ -15,14 +16,14 @@ function MainComponent() {
             exact
             path="/"
             render={(props) => {
-              return <SearchPanel {...props} setCountries={setCountries} />;
+              return <SearchPanel {...props} setCountries={setCountries} setLoader={setLoader} />;
             }}
           />
           <Route
             exact
             path="/"
             render={(props) => {
-              return <ResultPanel {...props} countries={countries} />;
+              return <ResultPanel {...props} countries={countries} loader={loader} />;
             }}
           />
           <Route exact path="/detail/:name" component={Details} />

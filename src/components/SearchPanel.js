@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SelectComponent from "./SelectComponent";
 import useSearch from "../utils/useSearch";
 
-function SearchPanel({ setCountries }) {
+function SearchPanel({ setCountries, setLoader }) {
   const [inputValue, setInputValue] = useState("");
-  const { option, setOption, setSearchInput } = useSearch(setCountries);
+  const { option, setOption, setSearchInput } = useSearch(setCountries, setLoader);
   const inputRef = useRef();
 
   const handleSubmit = (e) => {

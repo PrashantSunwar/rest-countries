@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
+import { darkTheme, lightTheme } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
 body {
   font-family: "Nunito Sans", sans-serif;
-  font-size: 0.875rem;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -40,5 +40,9 @@ body {
 }
 .details {
   color: ${({ theme }) => theme.text};
+}
+
+.loader {
+  background-color: ${({ theme }) => (theme === darkTheme ? lightTheme.body : darkTheme.body)};
 }
 `;
