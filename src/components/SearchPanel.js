@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SelectComponent from "./SelectComponent";
 import useSearch from "../utils/useSearch";
 
-function SearchPanel({ setCountries, setLoader }) {
+function SearchPanel({ setCountries, setLoader, countries }) {
   const [inputValue, setInputValue] = useState("");
   const { option, setOption, setSearchInput } = useSearch(setCountries, setLoader);
   const inputRef = useRef();
@@ -17,6 +17,7 @@ function SearchPanel({ setCountries, setLoader }) {
       setSearchInput(inputValue);
     }
   };
+
   useEffect(() => inputRef.current.focus(), []);
 
   return (

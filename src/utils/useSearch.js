@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useCallback } from "react";
 
@@ -9,12 +10,28 @@ export default function useSearch(setCountries, setLoader) {
   const [searchInput, setSearchInput] = useState("");
 
   const limitResponse = useCallback(
-    (data, limit = 8) => {
+    (data, limit = 50) => {
       const newResp = data.slice(0, limit);
+      console.log(newResp);
       setCountries(newResp);
     },
     [setCountries]
   );
+
+  function fetchData(url) {
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        limitResponse(data);
+      })
+      .catch(console.error)
+      .finally(() => setLoader(false));
+  }
+
+  useEffect(() => {
+    setLoader(true);
+    fetchData(url);
+  }, []);
 
   useEffect(() => {
     if (searchInput) {
@@ -23,30 +40,18 @@ export default function useSearch(setCountries, setLoader) {
       setLoader(true);
       if (regions.includes(searchInput)) searchUrl = url + `/region/${searchInput}`;
       else searchUrl = url + `/name/${searchInput}`;
-      fetch(searchUrl)
-        .then((resp) => resp.json())
-        .then((data) => {
-          limitResponse(data);
-        })
-        .catch(console.error)
-        .finally(() => setLoader(false));
+      fetchData(searchUrl);
     }
-  }, [searchInput, limitResponse, setCountries, setLoader]);
+  }, [searchInput, setCountries, setLoader]);
 
   useEffect(() => {
     if (option) {
       setCountries([]);
       setLoader(true);
-      const resgionUrl = url + `/region/${option}`;
-      fetch(resgionUrl)
-        .then((resp) => resp.json())
-        .then((data) => {
-          limitResponse(data);
-        })
-        .catch(console.error)
-        .finally(() => setLoader(false));
+      const regionUrl = url + `/region/${option}`;
+      fetchData(regionUrl);
     }
-  }, [option, limitResponse, setCountries, setLoader]);
+  }, [option, setCountries, setLoader]);
 
   return { option, setOption, searchInput, setSearchInput };
 }

@@ -16,7 +16,14 @@ function MainComponent() {
             exact
             path="/"
             render={(props) => {
-              return <SearchPanel {...props} setCountries={setCountries} setLoader={setLoader} />;
+              return (
+                <SearchPanel
+                  {...props}
+                  setCountries={setCountries}
+                  setLoader={setLoader}
+                  countries={countries}
+                />
+              );
             }}
           />
           <Route

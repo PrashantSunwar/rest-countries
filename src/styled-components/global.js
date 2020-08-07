@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { darkTheme, lightTheme } from "./theme";
+// import { darkTheme, lightTheme } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
 body {
@@ -43,6 +43,7 @@ body {
 }
 
 .loader {
-  background-color: ${({ theme }) => (theme === darkTheme ? lightTheme.body : darkTheme.body)};
+  border-color:  ${({ theme }) => theme.componentColors};
+  border-top-color: ${({ theme }) => theme.text};
 }
 `;
