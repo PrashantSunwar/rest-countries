@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useCallback } from "react";
 
-let url = "https://restcountries.eu/rest/v2";
+let url = "https://restcountries.com/v2";
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export default function useSearch(setCountries, setLoader) {
@@ -11,6 +11,7 @@ export default function useSearch(setCountries, setLoader) {
 
   const limitResponse = useCallback(
     (data, limit = 50) => {
+      console.log(data);
       const newResp = data.slice(0, limit);
       console.log(newResp);
       setCountries(newResp);
@@ -30,7 +31,7 @@ export default function useSearch(setCountries, setLoader) {
 
   useEffect(() => {
     setLoader(true);
-    fetchData(url);
+    fetchData(url + "/all");
   }, []);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function useSearch(setCountries, setLoader) {
       let searchUrl;
       setCountries([]);
       setLoader(true);
-      if (regions.includes(searchInput)) searchUrl = url + `/region/${searchInput}`;
+      if (regions.includes(searchInput)) searchUrl = url + `/continent/${searchInput}`;
       else searchUrl = url + `/name/${searchInput}`;
       fetchData(searchUrl);
     }
@@ -48,7 +49,7 @@ export default function useSearch(setCountries, setLoader) {
     if (option) {
       setCountries([]);
       setLoader(true);
-      const regionUrl = url + `/region/${option}`;
+      const regionUrl = url + `/continent/${option}`;
       fetchData(regionUrl);
     }
   }, [option, setCountries, setLoader]);
